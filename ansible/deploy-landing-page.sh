@@ -50,51 +50,77 @@ if [ -f "${ANSIBLE_DIR}/sync-terraform-outputs.sh" ]; then
     }
 fi
 
-# Upload landing page files via Ansible
+# Upload landing page files via Ansible playbook
 echo "[2/4] Uploading landing page files..."
 cd "${ANSIBLE_DIR}"
 
-# Use Ansible copy module to upload files
-ansible all -i inventory/hosts.yml \
-    -m copy \
-    -a "src=${LANDING_PAGE_SOURCE}/ dest=/usr/share/nginx/html/landing/ owner=root group=nginx mode='0755' backup=yes" \
-    --become || {
+# Create temporary playbook for file upload
+cat > /tmp/deploy-landing-files.yml <<EOF
+---
+- name: Upload Landing Page Files
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Create landing page directory
+      file:
+        path: /usr/share/nginx/html/landing
+        state: directory
+        owner: root
+        group: nginx
+        mode: '0755'
+    
+    - name: Upload landing page files
+      copy:
+        src: "${LANDING_PAGE_SOURCE}/"
+        dest: /usr/share/nginx/html/landing/
+        owner: root
+        group: nginx
+        mode: '0755'
+        backup: yes
+      
+    - name: Verify files uploaded
+      shell: ls -lah /usr/share/nginx/html/landing/ | head -10
+      register: landing_files
+      changed_when: false
+    
+    - name: Show uploaded files
+      debug:
+        var: landing_files.stdout_lines
+      
+    - name: Test Nginx configuration
+      command: nginx -t
+      changed_when: false
+      register: nginx_test
+      
+    - name: Display Nginx test result
+      debug:
+        msg: "{{ nginx_test.stderr }}"
+      when: nginx_test.rc != 0
+      
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded
+      when: nginx_test.rc == 0
+      
+    - name: Restart Nginx (if reload failed)
+      service:
+        name: nginx
+        state: restarted
+      when: nginx_test.rc != 0
+EOF
+
+ansible-playbook -i inventory/hosts.yml /tmp/deploy-landing-files.yml || {
     echo "❌ Error: Failed to upload landing page files"
+    rm -f /tmp/deploy-landing-files.yml
     exit 1
 }
 
-# Verify deployment
-echo ""
-echo "[3/4] Verifying deployment..."
-ansible all -i inventory/hosts.yml \
-    -m shell \
-    -a "ls -lah /usr/share/nginx/html/landing/ | head -10" \
-    --become || true
+rm -f /tmp/deploy-landing-files.yml
 
-# Check Nginx configuration
 echo ""
-echo "[4/4] Testing Nginx configuration..."
-ansible all -i inventory/hosts.yml \
-    -m shell \
-    -a "nginx -t" \
-    --become || {
-    echo "❌ Error: Nginx configuration test failed"
-    exit 1
-}
-
-# Reload Nginx
-echo ""
-echo "🔄 Reloading Nginx..."
-ansible all -i inventory/hosts.yml \
-    -m service \
-    -a "name=nginx state=reloaded" \
-    --become || {
-    echo "⚠️  Warning: Nginx reload failed, trying restart..."
-    ansible all -i inventory/hosts.yml \
-        -m service \
-        -a "name=nginx state=restarted" \
-        --become
-}
+echo "[3/4] Deployment verification complete"
 
 echo ""
 echo "✅ Landing page deployed successfully!"

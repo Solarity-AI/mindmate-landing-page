@@ -5,7 +5,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TERRAFORM_DIR="$(cd "${SCRIPT_DIR}/../../../umur-fw-2025/demo/devops/aws/terraform" && pwd)"
+TERRAFORM_DIR="$(cd "${SCRIPT_DIR}/../../umur-fw-2025/demo/devops/aws/terraform" && pwd)"
 ANSIBLE_DIR="${SCRIPT_DIR}"
 
 echo "🔄 Syncing Terraform outputs to Landing Page Ansible configuration..."
@@ -50,47 +50,50 @@ else
     SSH_KEY=$(terraform output frontend_ssh_key_path 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
 fi
 
-# Get root domain from Terraform variables file (these are not outputs, so read from tfvars)
-# Extract value before any comment (#) character, get first word after =
-ROOT_DOMAIN_TO_FRONTEND=$(grep -E "^\s*root_domain_to_frontend\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
-CREATE_WWW_RECORD=$(grep -E "^\s*create_www_record\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
-
-# Determine landing page domains
+# Get landing page domain from Terraform output (preferred method)
 LANDING_DOMAINS=""
-if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ]; then
-    # Get root domain from Terraform (if available) or use default
-    if [ "$USE_JQ" = true ]; then
-        ROOT_DOMAIN=$(terraform output -json 2>/dev/null | jq -r '.root_domain.value // empty' || echo "")
-    else
-        ROOT_DOMAIN=$(terraform output root_domain 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
-    fi
-    
-    # If no root domain in outputs, try to extract from domain_name variable
-    if [ -z "$ROOT_DOMAIN" ]; then
-        ROOT_DOMAIN=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' | sed 's/.*\.//' || echo "")
-    fi
-    
-    if [ -n "$ROOT_DOMAIN" ]; then
-        LANDING_DOMAINS="${ROOT_DOMAIN}"
-        if [ "$CREATE_WWW_RECORD" = "true" ]; then
-            LANDING_DOMAINS="${LANDING_DOMAINS} www.${ROOT_DOMAIN}"
+if [ "$USE_JQ" = true ]; then
+    LANDING_PAGE_DOMAIN=$(terraform output -json 2>/dev/null | jq -r '.landing_page_domain_name.value // empty' || echo "")
+else
+    LANDING_PAGE_DOMAIN=$(terraform output landing_page_domain_name 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
+fi
+
+# Fallback: Get landing page subdomain from Terraform variables file
+if [ -z "$LANDING_PAGE_DOMAIN" ]; then
+    LANDING_PAGE_SUBDOMAIN=$(grep -E "^\s*landing_page_subdomain\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "")
+    if [ -n "$LANDING_PAGE_SUBDOMAIN" ]; then
+        # Get root domain from domain_name variable
+        DOMAIN_NAME=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' || echo "")
+        if [ -n "$DOMAIN_NAME" ]; then
+            LANDING_PAGE_DOMAIN="${LANDING_PAGE_SUBDOMAIN}.${DOMAIN_NAME}"
         fi
     fi
-elif [ "$CREATE_WWW_RECORD" = "true" ]; then
-    # Only www subdomain
-    if [ "$USE_JQ" = true ]; then
-        ROOT_DOMAIN=$(terraform output -json 2>/dev/null | jq -r '.root_domain.value // empty' || echo "")
-    else
-        ROOT_DOMAIN=$(terraform output root_domain 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
-    fi
+fi
+
+# Legacy support: fallback to root_domain_to_frontend
+if [ -z "$LANDING_PAGE_DOMAIN" ]; then
+    ROOT_DOMAIN_TO_FRONTEND=$(grep -E "^\s*root_domain_to_frontend\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
+    CREATE_WWW_RECORD=$(grep -E "^\s*create_www_record\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
     
-    if [ -z "$ROOT_DOMAIN" ]; then
-        ROOT_DOMAIN=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' | sed 's/.*\.//' || echo "")
+    if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ] || [ "$CREATE_WWW_RECORD" = "true" ]; then
+        DOMAIN_NAME=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' || echo "")
+        if [ -n "$DOMAIN_NAME" ]; then
+            if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ]; then
+                LANDING_PAGE_DOMAIN="${DOMAIN_NAME}"
+            fi
+            if [ "$CREATE_WWW_RECORD" = "true" ]; then
+                if [ -n "$LANDING_PAGE_DOMAIN" ]; then
+                    LANDING_PAGE_DOMAIN="${LANDING_PAGE_DOMAIN} www.${DOMAIN_NAME}"
+                else
+                    LANDING_PAGE_DOMAIN="www.${DOMAIN_NAME}"
+                fi
+            fi
+        fi
     fi
-    
-    if [ -n "$ROOT_DOMAIN" ]; then
-        LANDING_DOMAINS="www.${ROOT_DOMAIN}"
-    fi
+fi
+
+if [ -n "$LANDING_PAGE_DOMAIN" ]; then
+    LANDING_DOMAINS="${LANDING_PAGE_DOMAIN}"
 fi
 
 # Update inventory file
