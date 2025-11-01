@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+# Deploy Static Landing Page to Frontend EC2
+# This script uploads static landing page files to the Nginx document root
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+LANDING_PAGE_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+ANSIBLE_DIR="${SCRIPT_DIR}"
+
+# Default landing page source directory (current project root)
+if [ -z "${LANDING_PAGE_SOURCE:-}" ]; then
+    LANDING_PAGE_SOURCE="${LANDING_PAGE_ROOT}"
+fi
+
+echo "🚀 Landing Page Deployment"
+echo "=========================="
+echo ""
+
+# Check if landing page source directory exists
+if [ ! -d "${LANDING_PAGE_SOURCE}" ]; then
+    echo "❌ Error: Landing page source directory not found: ${LANDING_PAGE_SOURCE}"
+    echo ""
+    echo "📋 Options:"
+    echo "   1. Create landing page files in: ${LANDING_PAGE_SOURCE}"
+    echo "   2. Set LANDING_PAGE_SOURCE environment variable:"
+    echo "      export LANDING_PAGE_SOURCE=/path/to/your/landing-page"
+    echo ""
+    exit 1
+fi
+
+# Check if index.html exists (non-blocking warning, deployment continues)
+if [ ! -f "${LANDING_PAGE_SOURCE}/index.html" ]; then
+    echo "⚠️  Warning: index.html not found in ${LANDING_PAGE_SOURCE}"
+    echo "   Landing page should have an index.html file"
+    echo "   Continuing deployment anyway (files will be uploaded as-is)..."
+    echo ""
+fi
+
+echo "✅ Landing page source: ${LANDING_PAGE_SOURCE}"
+echo ""
+
+# Sync Terraform outputs first
+if [ -f "${ANSIBLE_DIR}/sync-terraform-outputs.sh" ]; then
+    echo "[1/4] Syncing Terraform outputs..."
+    "${ANSIBLE_DIR}/sync-terraform-outputs.sh" || {
+        echo "⚠️  Warning: Failed to sync Terraform outputs"
+        echo "   Continuing with existing configuration..."
+        echo ""
+    }
+fi
+
+# Upload landing page files via Ansible
+echo "[2/4] Uploading landing page files..."
+cd "${ANSIBLE_DIR}"
+
+# Use Ansible copy module to upload files
+ansible all -i inventory/hosts.yml \
+    -m copy \
+    -a "src=${LANDING_PAGE_SOURCE}/ dest=/usr/share/nginx/html/landing/ owner=root group=nginx mode='0755' backup=yes" \
+    --become || {
+    echo "❌ Error: Failed to upload landing page files"
+    exit 1
+}
+
+# Verify deployment
+echo ""
+echo "[3/4] Verifying deployment..."
+ansible all -i inventory/hosts.yml \
+    -m shell \
+    -a "ls -lah /usr/share/nginx/html/landing/ | head -10" \
+    --become || true
+
+# Check Nginx configuration
+echo ""
+echo "[4/4] Testing Nginx configuration..."
+ansible all -i inventory/hosts.yml \
+    -m shell \
+    -a "nginx -t" \
+    --become || {
+    echo "❌ Error: Nginx configuration test failed"
+    exit 1
+}
+
+# Reload Nginx
+echo ""
+echo "🔄 Reloading Nginx..."
+ansible all -i inventory/hosts.yml \
+    -m service \
+    -a "name=nginx state=reloaded" \
+    --become || {
+    echo "⚠️  Warning: Nginx reload failed, trying restart..."
+    ansible all -i inventory/hosts.yml \
+        -m service \
+        -a "name=nginx state=restarted" \
+        --become
+}
+
+echo ""
+echo "✅ Landing page deployed successfully!"
+echo ""
+
+# Get domain from Terraform or group_vars
+LANDING_DOMAIN=$(grep -E "^\s+- \"[^\"]+\"" "${ANSIBLE_DIR}/group_vars/all.yml" | head -1 | sed 's/.*"\([^"]*\)".*/\1/' || echo "")
+
+# Get frontend IP from inventory
+FRONTEND_IP=$(grep "ansible_host:" "${ANSIBLE_DIR}/inventory/hosts.yml" | awk '{print $2}' | head -1 || echo "")
+
+echo "🌐 Access your landing page:"
+if [ -n "$LANDING_DOMAIN" ] && [ "$LANDING_DOMAIN" != "_" ]; then
+    # Try to get HTTPS URL from Terraform
+    TERRAFORM_DIR="${LANDING_PAGE_ROOT}/../../../umur-fw-2025/demo/devops/aws/terraform"
+    if [ -f "${TERRAFORM_DIR}/terraform.tfstate" ] && command -v terraform &> /dev/null; then
+        cd "${TERRAFORM_DIR}"
+        # Try to get root domain URL (might be configured via ALB)
+        ROOT_URL=$(terraform output -raw root_domain_url 2>/dev/null || echo "")
+        if [ -n "$ROOT_URL" ] && [ "$ROOT_URL" != "null" ]; then
+            echo "   🌍 Production (HTTPS): ${ROOT_URL}"
+        else
+            echo "   🌍 Domain: ${LANDING_DOMAIN}"
+        fi
+        cd - > /dev/null
+    else
+        echo "   🌍 Domain: ${LANDING_DOMAIN}"
+    fi
+fi
+
+if [ -n "$FRONTEND_IP" ]; then
+    echo "   🖥️  Direct IP (HTTP): http://${FRONTEND_IP}"
+fi
+echo ""
+
