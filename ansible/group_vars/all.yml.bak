@@ -26,6 +26,8 @@ nginx_ssl_enabled: false  # Set to true if you have SSL certificates (ALB handle
 
 
 
+
+
 landing_domain_names:
     - "sohbetterapi.solarityai.com"
 
