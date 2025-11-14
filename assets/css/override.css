@@ -50,7 +50,6 @@ html {
 /*}*/
 .ud-app-preview,
 .ud-social-follow,
-.ud-hero,
 .ud-features,
 .ud-contact,
 .ud-testimonials,
@@ -61,6 +60,11 @@ html {
             #E3F9F0 50%,
             #D6F0FF 100%
     );
+}
+
+/* Hero section - Full black background */
+.ud-hero {
+    background: #000000 !important;
 }
 
 /* Default logo (desktop) */
@@ -243,11 +247,11 @@ h1, h2, h3, h4 {
     /*font-size: 55px;*/
     /*line-height: 70px;*/
     /*margin-bottom: 20px;*/
-    color: #000; /* Black text */
+    color: #D4AF37 !important; /* Gold color like navigation */
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: #000 !important;   /* Black description */
+    color: #D4AF37 !important;   /* Gold color like navigation */
     font-size: 20px;
     line-height: 32px;
     opacity: 1;               /* Prevent faded look */
@@ -817,7 +821,7 @@ body {
 .ud-hero-desc {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
-    color: #334155; /* Slate Blue Grey: calm and trustworthy */
+    color: #D4AF37 !important; /* Gold color like navigation */
     letter-spacing: 0.3px;
 }
 
@@ -830,38 +834,38 @@ body {
 /* === Refined Hook + Group Return Animation === */
 
 .ud-hero-content .ud-hero-desc {
-    color: #334155;
+    color: #D4AF37 !important; /* Gold color like navigation */
     font-family: 'Poppins', sans-serif;
     text-align: center;
     letter-spacing: 0.3px;
     line-height: 1.8;
-    opacity: 0;
-    transform: translateY(25px);
-    filter: blur(2px);
+    opacity: 1 !important; /* Always visible - no animation */
+    transform: none;
+    filter: none;
 }
 
-/* First three sentences appear one by one */
-.ud-hero-content .ud-hero-desc:nth-of-type(1),
+/* First three sentences appear one by one - Disabled for single paragraph */
+/* .ud-hero-content .ud-hero-desc:nth-of-type(1),
 .ud-hero-content .ud-hero-desc:nth-of-type(2),
 .ud-hero-content .ud-hero-desc:nth-of-type(3) {
     animation: hookStep 2s ease-in-out forwards;
-}
+} */
 
-/* Delays (sequencing) */
-.ud-hero-content .ud-hero-desc:nth-of-type(1) { animation-delay: 0s; }
+/* Delays (sequencing) - Disabled */
+/* .ud-hero-content .ud-hero-desc:nth-of-type(1) { animation-delay: 0s; }
 .ud-hero-content .ud-hero-desc:nth-of-type(2) { animation-delay: 2s; }
-.ud-hero-content .ud-hero-desc:nth-of-type(3) { animation-delay: 4s; }
+.ud-hero-content .ud-hero-desc:nth-of-type(3) { animation-delay: 4s; } */
 
-/* Bottom text: stays completely hidden initially */
-.ud-hero-content .ud-hero-desc:nth-of-type(4) {
+/* Bottom text: stays completely hidden initially - Disabled */
+/* .ud-hero-content .ud-hero-desc:nth-of-type(4) {
     opacity: 0;
-}
+} */
 
-/* === Group return (3 questions + bottom text together) === */
-.ud-hero-content.show-all .ud-hero-desc {
+/* === Group return (3 questions + bottom text together) === - Disabled */
+/* .ud-hero-content.show-all .ud-hero-desc {
     animation: groupReturn 1.6s ease-out forwards;
     animation-delay: 0s;
-}
+} */
 
 /* --- Animation definitions --- */
 
