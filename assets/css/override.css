@@ -2,8 +2,8 @@
 
 /* Brand color palette */
 :root {
-    --bs-primary: #82CDE0;   /* Light Blue */
-    --bs-secondary: #FFDDBF; /* Light Peach */
+    --bs-primary: #82CDE0;
+    --bs-secondary: #FFDDBF;
     --bs-primary-rgb: 130, 205, 224;
     --bs-secondary-rgb: 255, 221, 191;
 }
@@ -12,7 +12,7 @@
 /* Global Font Scaling           */
 /* ============================= */
 html {
-    font-size: 115%;  /* increases all rem/em-based text by ~10% */
+    font-size: 115%;
 }
 
 /* Optional: for mobile responsiveness */
@@ -51,7 +51,6 @@ html {
 .ud-app-preview,
 .ud-social-follow,
 .ud-features,
-.ud-contact,
 .ud-testimonials,
 .ud-pricing {
     background: linear-gradient(
@@ -69,7 +68,7 @@ html {
 
 /* Default logo (desktop) */
 .navbar-brand img {
-    max-height: 135px;  /* was 70px → +65% */
+    max-height: 135px;
     width: auto;
     max-width: 100%;
 }
@@ -77,19 +76,19 @@ html {
 /* Tablet */
 @media (max-width: 991px) {
     .navbar-brand img {
-        max-height: 120px; /* was 55px → +65% */
+        max-height: 120px;
     }
 }
 
 /* Mobile */
 @media (max-width: 575px) {
     .navbar-brand img {
-        max-height: 100px; /* was 45px → +65% */
+        max-height: 100px;
     }
 }
 /* Padding for breathing space */
 .navbar-brand {
-    padding: 10px 0;   /* top bottom space */
+    padding: 10px 0;
 }
 
 
@@ -145,38 +144,38 @@ html {
 
 /* Navigation link colors - Always gold (default and sticky) */
 .ud-header .navbar-nav .nav-item a {
-    color: #D4AF37 !important; /* Always dark gold - will never change */
+    color: #D4AF37 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header .navbar-nav .nav-item a:hover {
-    color: #D4AF37 !important; /* Same color on hover - all equal */
+    color: #D4AF37 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header .navbar-nav .nav-item a.active {
-    color: #D4AF37 !important; /* Active link same color in default state */
+    color: #D4AF37 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 /* Same color in sticky state but active link is brighter */
 .ud-header.sticky .navbar-nav .nav-item a {
-    color: #D4AF37 !important; /* Gold color in sticky state - will not change */
+    color: #D4AF37 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header.sticky .navbar-nav .nav-item a:hover {
-    color: #D4AF37 !important; /* Gold color on sticky hover - will not change */
+    color: #D4AF37 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header.sticky .navbar-nav .nav-item a.active {
-    color: #F4D03F !important; /* Active link brighter gold in sticky state */
+    color: #F4D03F !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
@@ -218,48 +217,48 @@ h1, h2, h3, h4 {
 /* Store Badges adjustments      */
 /* ============================= */
 .store-badge img {
-    height: 40px;              /* smaller size */
-    border-radius: 12px;       /* soft rounded corners */
-    background: transparent;   /* no background box */
+    height: 40px;
+    border-radius: 12px;
+    background: transparent;
     box-shadow: none;
 }
 
 .store-badge img:hover {
-    transform: scale(1.03);    /* subtle hover effect */
+    transform: scale(1.03);
     transition: transform 0.2s ease;
 }
 
 /* Make the badges centered and spaced */
 .ud-hero-buttons {
     display: flex;
-    gap: 12px;                 /* space between badges */
-    justify-content: center;   /* center them horizontally */
-    flex-wrap: wrap;           /* wrap if screen is small */
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* ============================= */
 /* Hero Heading & Description    */
 /* ============================= */
-.ud-hero-content .ud-hero-title {  /*previous setts*/
+.ud-hero-content .ud-hero-title {
     /*font-family: 'MidasSans-Semi-Bold', Arial, sans-serif;*/
     /*font-style: normal;*/
     /*font-weight: 550;*/
     /*font-size: 55px;*/
     /*line-height: 70px;*/
     /*margin-bottom: 20px;*/
-    color: #D4AF37 !important; /* Gold color like navigation */
+    color: #D4AF37 !important;
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: #ffffff !important;   /* White color */
+    color: #ffffff !important;
     font-size: 20px;
     line-height: 32px;
-    opacity: 1;               /* Prevent faded look */
+    opacity: 1;
     max-width: 680px;
     margin: 0 auto 30px;
 }
 
-@media screen and (max-width: 991px) { /* Title and description on smaller screens */
+@media screen and (max-width: 991px) {
     .ud-hero-content .ud-hero-title {
         font-size: 36px;
         line-height: 48px;
@@ -290,9 +289,9 @@ h1, h2, h3, h4 {
 
 .ud-header .navbar-btn .signup-btn:hover,
 .ud-header .navbar-btn .signup-btn:focus {
-    background-color: #6abac5 !important; /* slightly darker blue on hover */
+    background-color: #6abac5 !important;
     border-color: #6bd8d4 !important;
-    color: #fff !important;               /* keep white text on hover */
+    color: #fff !important;
 }
 
 
@@ -315,7 +314,7 @@ h1, h2, h3, h4 {
 /* Faster and smoother accordion animation */
 .accordion-collapse {
     transition: height 0.18s ease-out !important;
-    background: #f9f9f9;          /* prevents orange background bleed */
+    background: #f9f9f9;
     border-radius: 8px;
     margin-top: 6px;
 }
@@ -353,7 +352,7 @@ h1, h2, h3, h4 {
 
 /* Override feature icons */
 .ud-feature-icon {
-    background: var(--bs-primary) !important; /* Light blue you selected */
+    background: var(--bs-primary) !important;
     color: #fff !important;
 }
 
@@ -369,7 +368,7 @@ h1, h2, h3, h4 {
 
 /* Default: Desktop (>=1200px) */
 .ud-widget-socials i {
-    font-size: 28px;  /* More prominent on large screens */
+    font-size: 28px;
     transition: transform 0.2s ease;
 }
 
@@ -380,14 +379,14 @@ h1, h2, h3, h4 {
 /* Tablet (>=768px and <1200px) */
 @media (max-width: 1199px) and (min-width: 768px) {
     .ud-widget-socials i {
-        font-size: 24px;  /* Slightly smaller on medium screens */
+        font-size: 24px;
     }
 }
 
 /* Mobile (<=767px) */
 @media (max-width: 767px) {
     .ud-widget-socials i {
-        font-size: 20px;  /* More compact on small screens */
+        font-size: 20px;
     }
 }
 
@@ -402,7 +401,7 @@ h1, h2, h3, h4 {
 .ud-single-testimonial {
     background: #fff;
     border-radius: 16px;
-    padding: 26px; /* Slightly increased inner padding, content breathes */
+    padding: 26px;
     min-height: 280px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -428,7 +427,7 @@ h1, h2, h3, h4 {
 
 /* Testimonial text (slightly larger font) */
 .ud-testimonial-content p {
-    font-size: 1.15rem; /* 1rem → 1.15rem (approximately +2px increase) */
+    font-size: 1.15rem;
     line-height: 1.7;
     color: #333;
     margin-bottom: 18px;
@@ -455,7 +454,7 @@ h1, h2, h3, h4 {
 }
 
 .ud-social-follow .ud-section-title h2 {
-    margin-bottom: 70px; !important;/* title and icons gap */
+    margin-bottom: 70px !important;
 }
 
 /* Container for social icons */
@@ -464,31 +463,31 @@ h1, h2, h3, h4 {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;   /* center align horizontally */
-    align-items: center;       /* center vertically */
-    gap: 40px;                 /* balanced spacing */
-    flex-wrap: wrap;           /* wrap icons if small screen */
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 /* Each social link style */
 .ud-social-icons li a {
-    width: 80px;               /* bigger icons */
+    width: 80px;
     height: 80px;
-    font-size: 36px;           /* larger icon font size */
-    background: #1a1a1a;       /* black circle background */
-    border-radius: 50%;        /* circle shape */
-    color: #fff;               /* white icons */
+    font-size: 36px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* stronger shadow */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
 }
 
 /* Hover effect */
 .ud-social-icons li a:hover {
-    background: var(--bs-primary); /* brand blue */
-    transform: translateY(-6px);   /* lift effect */
+    background: var(--bs-primary);
+    transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
@@ -510,7 +509,7 @@ h1, h2, h3, h4 {
 /* === Fix Contact Section Bottom Spacing === */
 #contact {
     margin-bottom: 0 !important;
-    padding-bottom: 20px !important; /* reduce bottom space */
+    padding-bottom: 20px !important;
 }
 
 
@@ -520,19 +519,19 @@ h1, h2, h3, h4 {
 
 /* === Footer Font Size Enhancements === */
 .ud-footer .ud-widget-title {
-    font-size: 20px;  /* was 16px → +25% */
+    font-size: 20px;
     font-weight: 700;
 }
 
 .ud-footer .ud-widget-links li a,
 .ud-footer .ud-widget-desc,
 .ud-footer .ud-widget-socials a {
-    font-size: 18px;  /* was 14px → now larger */
+    font-size: 18px;
     line-height: 1.7;
 }
 
 .ud-footer-bottom p {
-    font-size: 17px;  /* was 13–14px */
+    font-size: 17px;
     line-height: 1.6;
 }
 
@@ -553,12 +552,10 @@ h1, h2, h3, h4 {
         margin-right: auto;
     }
 
-    /* Social icons alignment */
     .ud-footer .ud-widget-socials {
         justify-content: center !important;
     }
 
-    /* Ensure footer logo is centered */
     .ud-footer .ud-footer-logo img {
         display: block;
         margin-left: auto;
@@ -583,9 +580,9 @@ h1, h2, h3, h4 {
 
 /* Center card (the one with .active) */
 .ud-single-pricing.active {
-    transform: scale(1.08); /* Bigger by default */
+    transform: scale(1.08);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-    z-index: 1; /* keeps it above others slightly */
+    z-index: 1;
 }
 
 /* On hover, center card grows even more */
@@ -612,10 +609,10 @@ h1, h2, h3, h4 {
     border-radius: 12px;
 
     position: relative;
-    width: 100vw;                 /* Full screen width */
+    width: 100vw;
     left: 50%;
     right: 50%;
-    margin-left: -50vw;           /* Force edge-to-edge layout */
+    margin-left: -50vw;
     margin-right: -50vw;
     padding: 18px 0;
 
@@ -641,7 +638,7 @@ h1, h2, h3, h4 {
 
 /* === 1. Features Section === */
 .ud-feature-title {
-    font-size: 1.3rem !important;   /* slightly smaller for better balance */
+    font-size: 1.3rem !important;
     font-weight: 700;
 }
 
@@ -652,12 +649,12 @@ h1, h2, h3, h4 {
 
 /* === 2. Pricing Section === */
 .ud-pricing-header h3 {
-    font-size: 1.4rem !important;   /* plan name */
+    font-size: 1.4rem !important;
     font-weight: 700;
 }
 
 .ud-pricing-header h4 {
-    font-size: 1.6rem !important;   /* price */
+    font-size: 1.6rem !important;
     color: var(--bs-primary);
     font-weight: 700;
 }
@@ -674,13 +671,13 @@ h1, h2, h3, h4 {
 
 /* === 3. FAQ Section === */
 .ud-faq-btn {
-    font-size: 1.08rem !important;  /* question text */
+    font-size: 1.08rem !important;
     font-weight: 600;
     line-height: 1.6;
 }
 
 .ud-faq-body {
-    font-size: 1rem !important;    /* answer text */
+    font-size: 1rem !important;
     line-height: 1.75;
 }
 
@@ -692,11 +689,11 @@ h1, h2, h3, h4 {
 
 /* Team section text colors - Gold */
 .ud-team .ud-section-title span {
-    color: #D4AF37 !important; /* Gold color */
-    font-weight: 700 !important; /* Same as hero title */
-    font-size: 45px !important; /* Same as hero title */
-    line-height: 60px !important; /* Same as hero title */
-    text-align: center !important; /* Same as hero title */
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+    font-size: 45px !important;
+    line-height: 60px !important;
+    text-align: center !important;
 }
 
 /* Team section span responsive - matching hero title */
@@ -715,27 +712,27 @@ h1, h2, h3, h4 {
 }
 
 .ud-team .ud-section-title h2 {
-    color: #D4AF37 !important; /* Gold color */
+    color: #D4AF37 !important;
 }
 
 .ud-team .ud-section-title p {
-    color: #D4AF37 !important; /* Gold color */
+    color: #D4AF37 !important;
 }
 
 .ud-team-info h5 {
-    font-size: 1.15rem !important;  /* member name */
+    font-size: 1.15rem !important;
     font-weight: 700;
-    color: #ffffff !important; /* White color */
+    color: #ffffff !important;
 }
 
 .ud-team-info h6 {
-    font-size: 1rem !important;     /* role */
-    color: #ffffff !important; /* White color */
+    font-size: 1rem !important;
+    color: #ffffff !important;
 }
 
 /* LinkedIn icon inside each team member */
 .ud-team-socials i {
-    font-size: 24px !important;  /* slightly smaller, proportional to text */
+    font-size: 24px !important;
     transition: transform 0.2s ease;
 }
 
@@ -745,7 +742,7 @@ h1, h2, h3, h4 {
 
 /* === 5. Testimonials === */
 .ud-testimonial-content p {
-    font-size: 1.1rem !important;  /* user quote */
+    font-size: 1.1rem !important;
     line-height: 1.75;
 }
 
@@ -756,13 +753,13 @@ h1, h2, h3, h4 {
 
 /* === 6. Section Headings General Boost === */
 .ud-section-title h2 {
-    font-size: 2.2rem !important;  /* consistent main section titles */
+    font-size: 2.2rem !important;
     line-height: 1.3;
     font-weight: 700;
 }
 
 .ud-section-title span {
-    font-size: 1rem !important;   /* small label above title */
+    font-size: 1rem !important;
     font-weight: 600;
 }
 
@@ -859,7 +856,7 @@ body {
 .ud-hero-desc {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
-    color: #ffffff !important; /* White color */
+    color: #ffffff !important;
     letter-spacing: 0.3px;
 }
 
@@ -872,12 +869,12 @@ body {
 /* === Refined Hook + Group Return Animation === */
 
 .ud-hero-content .ud-hero-desc {
-    color: #ffffff !important; /* White color */
+    color: #ffffff !important;
     font-family: 'Poppins', sans-serif;
     text-align: center;
     letter-spacing: 0.3px;
     line-height: 1.8;
-    opacity: 1 !important; /* Always visible - no animation */
+    opacity: 1 !important;
     transform: none;
     filter: none;
 }
@@ -1113,8 +1110,8 @@ body {
 /* === GRID LAYOUT === */
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 340 → 300 */
-    gap: 24px; /* 36 → 24, tighter spacing */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
     justify-items: center;
     align-items: start;
 }
@@ -1122,8 +1119,8 @@ body {
 /* === UNIFIED ITEM BOXES === */
 .social-item {
     width: 100%;
-    max-width: 360px;  /* 400 → 360 */
-    height: 560px;     /* 600 → 560 */
+    max-width: 360px;
+    height: 560px;
     border-radius: 16px;
     background: #fff;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
@@ -1195,7 +1192,70 @@ body {
 
 /* Increases only the address and email text sizes */
 .ud-info-meta p {
-    font-size: 1.05rem !important;   /* doubled from typical ~1rem */
+    font-size: 1.05rem !important;
     line-height: 1.6;
-    font-weight: 400;             /* slightly bold for readability */
+    font-weight: 400;
+}
+
+/* ============================= */
+/* Contact Section - Black Background and White Text */
+/* ============================= */
+
+/* Contact section - Black background */
+.ud-contact {
+    background: #000000 !important;
+}
+
+/* Contact title - Gold color (same as other titles) */
+.ud-contact-title span {
+    color: #D4AF37 !important;
+}
+
+.ud-contact-title h2 {
+    color: #ffffff !important;
+    font-size: 1.65rem !important;
+    line-height: 1.4 !important;
+}
+
+/* Contact info section - White text */
+.ud-info-meta h5 {
+    color: #ffffff !important;
+}
+
+.ud-info-meta p {
+    color: #ffffff !important;
+}
+
+.ud-info-icon i {
+    color: #ffffff !important;
+}
+
+.ud-contact-form-title,
+.ud-contact-form-title h3 {
+    color: #ffffff !important;
+}
+
+.ud-contact-form label {
+    color: #ffffff !important;
+}
+
+/* Contact form inputs - White text and borders */
+.ud-contact-form input[type="text"],
+.ud-contact-form input[type="email"],
+.ud-contact-form textarea {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.ud-contact-form input::placeholder,
+.ud-contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.ud-contact-form input:focus,
+.ud-contact-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15) !important;
 }
