@@ -517,6 +517,15 @@ h1, h2, h3, h4 {
 /* Footer Styling Overrides      */
 /* ============================= */
 
+/* Footer - Black background */
+.ud-footer {
+    background: #000000 !important;
+}
+
+.ud-footer-bottom {
+    background: #000000 !important;
+}
+
 /* === Footer Font Size Enhancements === */
 .ud-footer .ud-widget-title {
     font-size: 20px;
@@ -843,6 +852,12 @@ p, li, a, span {
 /* Facebook hover */
 .ud-widget-socials a:hover .lni-facebook-filled {
     color: #1877F2 !important;
+    transform: scale(1.2);
+}
+
+/* LinkedIn hover */
+.ud-widget-socials a:hover .lni-linkedin-original {
+    color: var(--primary-color) !important;
     transform: scale(1.2);
 }
 
@@ -1265,5 +1280,20 @@ body {
 .ud-contact-form input::placeholder,
 .ud-contact-form textarea::placeholder {
     color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Contact form button - Gold theme */
+.ud-contact-form .ud-main-btn {
+    background-color: #D4AF37 !important;
+    border: 1px solid #D4AF37 !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.ud-contact-form .ud-main-btn:hover,
+.ud-contact-form .ud-main-btn:focus {
+    background-color: #B8941F !important;
+    border-color: #B8941F !important;
+    color: #ffffff !important;
 }
 
