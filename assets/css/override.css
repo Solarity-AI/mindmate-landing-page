@@ -251,7 +251,7 @@ h1, h2, h3, h4 {
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: #D4AF37 !important;   /* Gold color like navigation */
+    color: #ffffff !important;   /* White color */
     font-size: 20px;
     line-height: 32px;
     opacity: 1;               /* Prevent faded look */
@@ -685,14 +685,52 @@ h1, h2, h3, h4 {
 }
 
 /* === 4. Team Section === */
+/* Team section - Black background */
+.ud-team {
+    background: #000000 !important;
+}
+
+/* Team section text colors - Gold */
+.ud-team .ud-section-title span {
+    color: #D4AF37 !important; /* Gold color */
+    font-weight: 700 !important; /* Same as hero title */
+    font-size: 45px !important; /* Same as hero title */
+    line-height: 60px !important; /* Same as hero title */
+    text-align: center !important; /* Same as hero title */
+}
+
+/* Team section span responsive - matching hero title */
+@media screen and (max-width: 991px) {
+    .ud-team .ud-section-title span {
+        font-size: 38px !important;
+        line-height: 50px !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .ud-team .ud-section-title span {
+        font-size: 26px !important;
+        line-height: 38px !important;
+    }
+}
+
+.ud-team .ud-section-title h2 {
+    color: #D4AF37 !important; /* Gold color */
+}
+
+.ud-team .ud-section-title p {
+    color: #D4AF37 !important; /* Gold color */
+}
+
 .ud-team-info h5 {
     font-size: 1.15rem !important;  /* member name */
     font-weight: 700;
+    color: #ffffff !important; /* White color */
 }
 
 .ud-team-info h6 {
     font-size: 1rem !important;     /* role */
-    color: #555;
+    color: #ffffff !important; /* White color */
 }
 
 /* LinkedIn icon inside each team member */
@@ -821,7 +859,7 @@ body {
 .ud-hero-desc {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
-    color: #D4AF37 !important; /* Gold color like navigation */
+    color: #ffffff !important; /* White color */
     letter-spacing: 0.3px;
 }
 
@@ -834,7 +872,7 @@ body {
 /* === Refined Hook + Group Return Animation === */
 
 .ud-hero-content .ud-hero-desc {
-    color: #D4AF37 !important; /* Gold color like navigation */
+    color: #ffffff !important; /* White color */
     font-family: 'Poppins', sans-serif;
     text-align: center;
     letter-spacing: 0.3px;
