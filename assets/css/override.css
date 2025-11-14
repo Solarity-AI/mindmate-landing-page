@@ -1230,6 +1230,12 @@ body {
     color: #ffffff !important;
 }
 
+/* Contact form wrapper - Black background with gold border */
+.ud-contact-form-wrapper {
+    background: #000000 !important;
+    border: 1px solid #D4AF37 !important;
+}
+
 .ud-contact-form-title,
 .ud-contact-form-title h3 {
     color: #ffffff !important;
@@ -1237,6 +1243,7 @@ body {
 
 .ud-contact-form label {
     color: #ffffff !important;
+    font-size: 17px !important;
 }
 
 /* Contact form inputs - White text and borders */
@@ -1244,8 +1251,15 @@ body {
 .ud-contact-form input[type="email"],
 .ud-contact-form textarea {
     color: #ffffff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.ud-contact-form input[type="text"]:focus,
+.ud-contact-form input[type="email"]:focus,
+.ud-contact-form textarea:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
 .ud-contact-form input::placeholder,
@@ -1253,9 +1267,3 @@ body {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.ud-contact-form input:focus,
-.ud-contact-form textarea:focus {
-    border-color: rgba(255, 255, 255, 0.6) !important;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.15) !important;
-}
