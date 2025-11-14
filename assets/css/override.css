@@ -129,6 +129,55 @@ html {
 }
 
 /* ============================= */
+/* Navigation Background Color   */
+/* ============================= */
+.ud-header {
+    background: #000000 !important;
+}
+
+.ud-header.sticky {
+    background: #000000 !important;
+}
+
+/* Navigation link colors - Always gold (default and sticky) */
+.ud-header .navbar-nav .nav-item a {
+    color: #D4AF37 !important; /* Always dark gold - will never change */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.ud-header .navbar-nav .nav-item a:hover {
+    color: #D4AF37 !important; /* Same color on hover - all equal */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.ud-header .navbar-nav .nav-item a.active {
+    color: #D4AF37 !important; /* Active link same color in default state */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Same color in sticky state but active link is brighter */
+.ud-header.sticky .navbar-nav .nav-item a {
+    color: #D4AF37 !important; /* Gold color in sticky state - will not change */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.ud-header.sticky .navbar-nav .nav-item a:hover {
+    color: #D4AF37 !important; /* Gold color on sticky hover - will not change */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.ud-header.sticky .navbar-nav .nav-item a.active {
+    color: #F4D03F !important; /* Active link brighter gold in sticky state */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ============================= */
 /* FAQ accordion (ud-faq-btn)    */
 /* ============================= */
 .ud-faq-btn:not(.collapsed) {
@@ -142,30 +191,6 @@ html {
 /* ============================= */
 h1, h2, h3, h4 {
     font-weight: 600;
-}
-
-/* Default navbar links (before scroll) */
-.ud-header .navbar-nav .nav-item a {
-    color: #000 !important;       /* White on hero */
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: color 0.3s ease;
-}
-
-/* When navbar is sticky (after scroll), make all links black */
-.ud-header.sticky .navbar-nav .nav-item a {
-    color: #000 !important;
-}
-
-/* Active link state */
-.ud-header .navbar-nav .nav-item a.active {
-    color: var(--bs-primary) !important; /* dark tone from logo */
-    font-weight: 700; /* bolder weight */
-}
-
-/* Keep hover separate */
-.ud-header .navbar-nav .nav-item a:hover {
-    color: #38dcdc !important;
 }
 
 
@@ -324,7 +349,7 @@ h1, h2, h3, h4 {
 
 /* Override feature icons */
 .ud-feature-icon {
-    background: var(--bs-primary) !important; /* senin seçtiğin açık mavi */
+    background: var(--bs-primary) !important; /* Light blue you selected */
     color: #fff !important;
 }
 
@@ -340,7 +365,7 @@ h1, h2, h3, h4 {
 
 /* Default: Desktop (>=1200px) */
 .ud-widget-socials i {
-    font-size: 28px;  /* büyük ekranlarda daha belirgin */
+    font-size: 28px;  /* More prominent on large screens */
     transition: transform 0.2s ease;
 }
 
@@ -348,17 +373,17 @@ h1, h2, h3, h4 {
     transform: scale(1.2);
 }
 
-/* Tablet (>=768px ve <1200px) */
+/* Tablet (>=768px and <1200px) */
 @media (max-width: 1199px) and (min-width: 768px) {
     .ud-widget-socials i {
-        font-size: 24px;  /* orta ekranlarda biraz küçült */
+        font-size: 24px;  /* Slightly smaller on medium screens */
     }
 }
 
 /* Mobile (<=767px) */
 @media (max-width: 767px) {
     .ud-widget-socials i {
-        font-size: 20px;  /* küçük ekranlarda daha kompakt */
+        font-size: 20px;  /* More compact on small screens */
     }
 }
 
@@ -373,7 +398,7 @@ h1, h2, h3, h4 {
 .ud-single-testimonial {
     background: #fff;
     border-radius: 16px;
-    padding: 26px; /* iç boşluğu azıcık artırdım, içerik nefes alır */
+    padding: 26px; /* Slightly increased inner padding, content breathes */
     min-height: 280px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -399,7 +424,7 @@ h1, h2, h3, h4 {
 
 /* Testimonial text (slightly larger font) */
 .ud-testimonial-content p {
-    font-size: 1.15rem; /* 1rem → 1.15rem (yaklaşık +2px artış) */
+    font-size: 1.15rem; /* 1rem → 1.15rem (approximately +2px increase) */
     line-height: 1.7;
     color: #333;
     margin-bottom: 18px;
@@ -610,7 +635,7 @@ h1, h2, h3, h4 {
 /* === Unified Font Harmony & Scaling (Final Refined Version) === */
 /* ============================= */
 
-/* === 1. Features Section (Özellikler) === */
+/* === 1. Features Section === */
 .ud-feature-title {
     font-size: 1.3rem !important;   /* slightly smaller for better balance */
     font-weight: 700;
@@ -621,7 +646,7 @@ h1, h2, h3, h4 {
     line-height: 1.75;
 }
 
-/* === 2. Pricing Section (Fiyatlarımız) === */
+/* === 2. Pricing Section === */
 .ud-pricing-header h3 {
     font-size: 1.4rem !important;   /* plan name */
     font-weight: 700;
@@ -643,7 +668,7 @@ h1, h2, h3, h4 {
     padding: 10px 28px !important;
 }
 
-/* === 3. FAQ Section (S.S.S.) === */
+/* === 3. FAQ Section === */
 .ud-faq-btn {
     font-size: 1.08rem !important;  /* question text */
     font-weight: 600;
@@ -655,7 +680,7 @@ h1, h2, h3, h4 {
     line-height: 1.75;
 }
 
-/* === 4. Team Section (Takım) === */
+/* === 4. Team Section === */
 .ud-team-info h5 {
     font-size: 1.15rem !important;  /* member name */
     font-weight: 700;
@@ -676,7 +701,7 @@ h1, h2, h3, h4 {
     transform: scale(1.2);
 }
 
-/* === 5. Testimonials (Gerçek Deneyimler) === */
+/* === 5. Testimonials === */
 .ud-testimonial-content p {
     font-size: 1.1rem !important;  /* user quote */
     line-height: 1.75;
@@ -744,7 +769,7 @@ p, li, a, span {
 /* === Social Icons Hover Colors === */
 /* ============================= */
 
-/* Başlangıçta ikonlar beyaz */
+/* Icons are white initially */
 .ud-widget-socials i {
     color: #fff !important;
     transition: color 0.3s ease, transform 0.2s ease;
@@ -756,7 +781,7 @@ p, li, a, span {
     transform: scale(1.2);
 }
 
-/* === Instagram Gradyan Hover === */
+/* === Instagram Gradient Hover === */
 .ud-widget-socials a:hover .lni-instagram-filled {
     background: linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
     -webkit-background-clip: text;
@@ -766,7 +791,7 @@ p, li, a, span {
 }
 
 
-/* === TikTok Gradyan Hover === */
+/* === TikTok Gradient Hover === */
 .ud-widget-socials a:hover .lni-tiktok {
     background: linear-gradient(135deg, #25F4EE, #FE2C55);
     -webkit-background-clip: text;
@@ -792,11 +817,11 @@ body {
 .ud-hero-desc {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
-    color: #334155; /* Slate Blue Grey: sakin ve güven verici */
+    color: #334155; /* Slate Blue Grey: calm and trustworthy */
     letter-spacing: 0.3px;
 }
 
-/* Son paragraf (açıklama) daha yumuşak ton */
+/* Last paragraph (description) softer tone */
 .ud-hero-desc:last-of-type {
     font-weight: 500;
     opacity: 0.9;
@@ -815,30 +840,30 @@ body {
     filter: blur(2px);
 }
 
-/* İlk üç cümle sahneye tek tek çıkar */
+/* First three sentences appear one by one */
 .ud-hero-content .ud-hero-desc:nth-of-type(1),
 .ud-hero-content .ud-hero-desc:nth-of-type(2),
 .ud-hero-content .ud-hero-desc:nth-of-type(3) {
     animation: hookStep 2s ease-in-out forwards;
 }
 
-/* Gecikmeler (sıralama) */
+/* Delays (sequencing) */
 .ud-hero-content .ud-hero-desc:nth-of-type(1) { animation-delay: 0s; }
 .ud-hero-content .ud-hero-desc:nth-of-type(2) { animation-delay: 2s; }
 .ud-hero-content .ud-hero-desc:nth-of-type(3) { animation-delay: 4s; }
 
-/* Alt metin: başta tamamen gizli kalır */
+/* Bottom text: stays completely hidden initially */
 .ud-hero-content .ud-hero-desc:nth-of-type(4) {
     opacity: 0;
 }
 
-/* === Grup dönüşü (3 soru + alt metin birlikte) === */
+/* === Group return (3 questions + bottom text together) === */
 .ud-hero-content.show-all .ud-hero-desc {
     animation: groupReturn 1.6s ease-out forwards;
     animation-delay: 0s;
 }
 
-/* --- Animasyon tanımları --- */
+/* --- Animation definitions --- */
 
 @keyframes hookStep {
     0% {
@@ -863,7 +888,7 @@ body {
     }
 }
 
-/* Grup halinde geri dönme (tüm satırlar + alt metin) */
+/* Group return (all lines + bottom text) */
 @keyframes groupReturn {
     0% {
         opacity: 0;
@@ -882,7 +907,7 @@ body {
     }
 }
 
-/* Ana görsel hover efekti */
+/* Main image hover effect */
 .preview-wrapper {
     display: inline-block;
     position: relative;
@@ -897,7 +922,7 @@ body {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Pop-up görünümü */
+/* Pop-up appearance */
 .popup-overlay {
     display: none;
     position: fixed;
@@ -932,13 +957,13 @@ body {
     color: #000;
 }
 
-/* Swiper içi görseller */
+/* Images inside Swiper */
 .popup-img {
     width: 100%;
     border-radius: 16px;
 }
 
-/* Swiper navigasyon renkleri */
+/* Swiper navigation colors */
 .swiper-button-next,
 .swiper-button-prev {
     color: #5cbdb9;
@@ -947,7 +972,7 @@ body {
     background: #5cbdb9;
 }
 
-/* Animasyon */
+/* Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
@@ -966,7 +991,7 @@ body {
 /*.ud-instagram-gallery {*/
 /*    background: linear-gradient(180deg, #ffffff 0%, #E3F9F0 50%, #D6F0FF 100%);*/
 /*    padding: 100px 0;*/
-/*    !* border-top: 1px solid rgba(0, 0, 0, 0.05);  <-- kaldırıldı *!*/
+/*    !* border-top: 1px solid rgba(0, 0, 0, 0.05);  <-- removed *!*/
 /*}*/
 
 /*.ud-instagram-gallery h2 {*/
@@ -1047,7 +1072,7 @@ body {
 .social-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 340 → 300 */
-    gap: 24px; /* 36 → 24, daha sıkı aralık */
+    gap: 24px; /* 36 → 24, tighter spacing */
     justify-items: center;
     align-items: start;
 }
@@ -1098,7 +1123,7 @@ body {
 }
 
 /* === LEGACY SUPPORT (optional) === */
-/* Eğer .youtube-embed, .tiktok-embed, .facebook-embed gibi eski stiller varsa bozulmasın diye */
+/* So old styles like .youtube-embed, .tiktok-embed, .facebook-embed don't break */
 .youtube-embed,
 .tiktok-embed,
 .facebook-embed,
