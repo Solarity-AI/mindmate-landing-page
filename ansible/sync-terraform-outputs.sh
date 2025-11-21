@@ -110,6 +110,10 @@ if [ -n "$FRONTEND_IP" ]; then
     fi
     
     if [ -n "$SSH_KEY" ]; then
+        # Convert absolute path to ~/.ssh/ format if it's in the user's home directory
+        if [[ "$SSH_KEY" == "$HOME"* ]]; then
+            SSH_KEY="${SSH_KEY/#$HOME/~}"
+        fi
         sed "s|ansible_ssh_private_key_file:.*|ansible_ssh_private_key_file: ${SSH_KEY}|" "${ANSIBLE_DIR}/inventory/hosts.yml" > "${ANSIBLE_DIR}/inventory/hosts.yml.tmp" && mv "${ANSIBLE_DIR}/inventory/hosts.yml.tmp" "${ANSIBLE_DIR}/inventory/hosts.yml"
     fi
     
