@@ -70,14 +70,31 @@ cat > /tmp/deploy-landing-files.yml <<EOF
         group: nginx
         mode: '0755'
     
-    - name: Upload landing page files
-      copy:
+    - name: Upload landing page files (using rsync - faster and supports exclusions)
+      synchronize:
         src: "${LANDING_PAGE_SOURCE}/"
         dest: /usr/share/nginx/html/landing/
+        delete: no
+        recursive: yes
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=.gitignore"
+          - "--exclude=ansible"
+          - "--exclude=*.bak"
+          - "--exclude=*.backup"
+          - "--exclude=TestCommit"
+          - "--exclude=README.md"
+          - "--exclude=LICENCE"
+          - "--progress"
+      become: no
+      
+    - name: Set correct ownership and permissions
+      file:
+        path: /usr/share/nginx/html/landing
         owner: root
         group: nginx
         mode: '0755'
-        backup: yes
+        recurse: yes
       
     - name: Verify files uploaded
       shell: ls -lah /usr/share/nginx/html/landing/ | head -10
