@@ -1,24 +1,32 @@
 /* overrides.css - Mindmate brand overrides */
 
-/* Brand color palette */
+/* Professional color palette */
 :root {
-    --bs-primary: #82CDE0;   /* Light Blue */
-    --bs-secondary: #FFDDBF; /* Light Peach */
+    --bs-primary: #82CDE0;   /* Light Blue - Brand color */
+    --bs-secondary: #6abac5; /* Darker Blue for hover */
     --bs-primary-rgb: 130, 205, 224;
-    --bs-secondary-rgb: 255, 221, 191;
+    --bs-secondary-rgb: 106, 186, 197;
+    --text-primary: #1f2937;   /* Dark gray for headings */
+    --text-secondary: #4b5563; /* Medium gray for body */
+    --text-tertiary: #6b7280;  /* Light gray for subtle text */
 }
 
 /* ============================= */
-/* Global Font Scaling           */
+/* Global Font Scaling & Typography */
 /* ============================= */
-html {
-    font-size: 115%;  /* increases all rem/em-based text by ~10% */
+html, body {
+    font-size: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Optional: for mobile responsiveness */
 @media (max-width: 768px) {
-    html {
-        font-size: 115%;
+    html, body {
+        font-size: 100%;
     }
 }
 
@@ -96,16 +104,23 @@ html {
 /* ============================= */
 .ud-main-btn {
     background-color: var(--bs-primary) !important;
-    border: 1px solid var(--bs-primary) !important;
+    border: 2px solid var(--bs-primary) !important;
     color: #fff !important;
-    transition: all 0.3s ease;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    padding: 12px 28px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
 }
 
 .ud-main-btn:hover,
 .ud-main-btn:focus {
-    background-color: #6cb9cf !important;
-    border-color: #6cb9cf !important;
+    background-color: var(--bs-secondary) !important;
+    border-color: var(--bs-secondary) !important;
     color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(130, 205, 224, 0.3) !important;
 }
 
 .ud-white-btn {
@@ -133,39 +148,40 @@ html {
 /* ============================= */
 .ud-faq-btn:not(.collapsed) {
     background-color: var(--bs-secondary) !important;
-    color: #000 !important;
+    color: var(--text-primary) !important;
     border-color: var(--bs-secondary) !important;
 }
 
 /* ============================= */
 /* Headings                      */
 /* ============================= */
-h1, h2, h3, h4 {
-    font-weight: 600;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
 }
 
 /* Default navbar links (before scroll) */
 .ud-header .navbar-nav .nav-item a {
-    color: #000 !important;       /* White on hero */
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: color 0.3s ease;
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    transition: color 0.2s ease;
 }
 
 /* When navbar is sticky (after scroll), make all links black */
 .ud-header.sticky .navbar-nav .nav-item a {
-    color: #000 !important;
+    color: var(--text-primary) !important;
 }
 
 /* Active link state */
 .ud-header .navbar-nav .nav-item a.active {
-    color: var(--bs-primary) !important; /* dark tone from logo */
-    font-weight: 700; /* bolder weight */
+    color: var(--bs-primary) !important;
+    font-weight: 600 !important;
 }
 
 /* Keep hover separate */
 .ud-header .navbar-nav .nav-item a:hover {
-    color: #38dcdc !important;
+    color: var(--bs-primary) !important;
 }
 
 
@@ -211,34 +227,46 @@ h1, h2, h3, h4 {
 /* ============================= */
 /* Hero Heading & Description    */
 /* ============================= */
-.ud-hero-content .ud-hero-title {  /*previous setts*/
-    /*font-family: 'MidasSans-Semi-Bold', Arial, sans-serif;*/
-    /*font-style: normal;*/
-    /*font-weight: 550;*/
-    /*font-size: 55px;*/
-    /*line-height: 70px;*/
-    /*margin-bottom: 20px;*/
-    color: #000; /* Black text */
+.ud-hero-content .ud-hero-title {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 3.5rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1.5rem !important;
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: #000 !important;   /* Black description */
-    font-size: 20px;
-    line-height: 32px;
-    opacity: 1;               /* Prevent faded look */
-    max-width: 680px;
-    margin: 0 auto 30px;
+    color: var(--text-secondary) !important;
+    font-size: 1.25rem !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+    opacity: 1 !important;
+    max-width: 720px;
+    margin: 0 auto 2rem;
 }
 
-@media screen and (max-width: 991px) { /* Title and description on smaller screens */
+@media screen and (max-width: 991px) {
     .ud-hero-content .ud-hero-title {
-        font-size: 36px;
-        line-height: 48px;
+        font-size: 2.5rem !important;
+        line-height: 1.3 !important;
     }
 
     .ud-hero-content .ud-hero-desc {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: 1.125rem !important;
+        line-height: 1.6 !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .ud-hero-content .ud-hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .ud-hero-content .ud-hero-desc {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
     }
 }
 
@@ -401,7 +429,7 @@ h1, h2, h3, h4 {
 .ud-testimonial-content p {
     font-size: 1.15rem; /* 1rem → 1.15rem (yaklaşık +2px artış) */
     line-height: 1.7;
-    color: #333;
+    color: var(--text-secondary) !important;
     margin-bottom: 18px;
     flex-grow: 1;
 }
@@ -491,20 +519,27 @@ h1, h2, h3, h4 {
 
 /* === Footer Font Size Enhancements === */
 .ud-footer .ud-widget-title {
-    font-size: 20px;  /* was 16px → +25% */
-    font-weight: 700;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-footer .ud-widget-links li a,
 .ud-footer .ud-widget-desc,
 .ud-footer .ud-widget-socials a {
-    font-size: 18px;  /* was 14px → now larger */
-    line-height: 1.7;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--text-secondary) !important;
+}
+
+.ud-footer .ud-widget-links li a:hover {
+    color: var(--bs-primary) !important;
 }
 
 .ud-footer-bottom p {
-    font-size: 17px;  /* was 13–14px */
-    line-height: 1.6;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: var(--text-tertiary) !important;
 }
 
 /* ============================= */
@@ -612,30 +647,34 @@ h1, h2, h3, h4 {
 
 /* === 1. Features Section (Özellikler) === */
 .ud-feature-title {
-    font-size: 1.3rem !important;   /* slightly smaller for better balance */
-    font-weight: 700;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-feature-desc {
-    font-size: 1.05rem !important;
-    line-height: 1.75;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--text-secondary) !important;
 }
 
 /* === 2. Pricing Section (Fiyatlarımız) === */
 .ud-pricing-header h3 {
-    font-size: 1.4rem !important;   /* plan name */
-    font-weight: 700;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-pricing-header h4 {
-    font-size: 1.6rem !important;   /* price */
-    color: var(--bs-primary);
-    font-weight: 700;
+    font-size: 2rem !important;
+    color: var(--bs-primary) !important;
+    font-weight: 700 !important;
 }
 
 .ud-pricing-body ul li {
-    font-size: 1.02rem !important;
-    line-height: 1.7;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--text-secondary) !important;
 }
 
 .ud-single-pricing .ud-main-btn {
@@ -645,25 +684,29 @@ h1, h2, h3, h4 {
 
 /* === 3. FAQ Section (S.S.S.) === */
 .ud-faq-btn {
-    font-size: 1.08rem !important;  /* question text */
-    font-weight: 600;
-    line-height: 1.6;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-faq-body {
-    font-size: 1rem !important;    /* answer text */
-    line-height: 1.75;
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+    color: var(--text-secondary) !important;
 }
 
 /* === 4. Team Section (Takım) === */
 .ud-team-info h5 {
-    font-size: 1.15rem !important;  /* member name */
-    font-weight: 700;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-team-info h6 {
-    font-size: 1rem !important;     /* role */
-    color: #555;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    color: var(--text-tertiary) !important;
 }
 
 /* LinkedIn icon inside each team member */
@@ -678,36 +721,60 @@ h1, h2, h3, h4 {
 
 /* === 5. Testimonials (Gerçek Deneyimler) === */
 .ud-testimonial-content p {
-    font-size: 1.1rem !important;  /* user quote */
-    line-height: 1.75;
+    font-size: 1.125rem !important;
+    line-height: 1.75 !important;
+    color: var(--text-secondary) !important;
 }
 
 .ud-testimonial-info h4,
 .ud-testimonial-info h5 {
     font-size: 1rem !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+}
+
+.ud-testimonial-info p {
+    font-size: 0.95rem !important;
+    color: var(--text-tertiary) !important;
 }
 
 /* === 6. Section Headings General Boost === */
 .ud-section-title h2 {
-    font-size: 2.2rem !important;  /* consistent main section titles */
-    line-height: 1.3;
-    font-weight: 700;
+    font-size: 2.5rem !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin-top: 0.5rem !important;
 }
 
 .ud-section-title span {
-    font-size: 1rem !important;   /* small label above title */
-    font-weight: 600;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--bs-primary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
 .ud-section-title p {
-    font-size: 1.05rem !important;
-    line-height: 1.75;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+    color: var(--text-secondary) !important;
 }
 
 /* === 7. Global Text & Links Consistency === */
-p, li, a, span {
-    font-size: 1rem;
-    line-height: 1.7;
+p, li {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--text-secondary) !important;
+}
+
+a {
+    color: var(--bs-primary) !important;
+    transition: color 0.2s ease !important;
+}
+
+a:hover {
+    color: var(--bs-secondary) !important;
 }
 
 /* === 8. Responsive Balance (Mobile) === */
@@ -924,12 +991,12 @@ body {
     top: 10px;
     right: 18px;
     font-size: 28px;
-    color: #333;
+    color: var(--text-secondary) !important;
     cursor: pointer;
     font-weight: bold;
 }
 .popup-close:hover {
-    color: #000;
+    color: var(--text-primary) !important;
 }
 
 /* Swiper içi görseller */
@@ -1032,8 +1099,9 @@ body {
 }
 
 .ud-social-gallery h2 {
-    font-weight: 700;
-    color: #1a1a1a;
+    font-weight: 700 !important;
+    font-size: 2rem !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-social-gallery .gallery-desc {
@@ -1116,10 +1184,19 @@ body {
 /* === Contact title made bigger === */
 /* ============================= */
 .ud-contact-title span {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
     display: inline-block;
-    color: #1a1a1a;
+    color: var(--bs-primary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+.ud-contact-title h2 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin-top: 0.5rem !important;
 }
 
 /* ============================= */
@@ -1128,7 +1205,28 @@ body {
 
 /* Increases only the address and email text sizes */
 .ud-info-meta p {
-    font-size: 1.05rem !important;   /* doubled from typical ~1rem */
-    line-height: 1.6;
-    font-weight: 400;             /* slightly bold for readability */
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Contact form styling */
+.ud-contact-form label {
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+}
+
+.ud-contact-form input[type="text"],
+.ud-contact-form input[type="email"],
+.ud-contact-form textarea {
+    font-size: 1rem !important;
+    color: var(--text-primary) !important;
+    border-color: #e5e7eb !important;
+}
+
+.ud-contact-form input::placeholder,
+.ud-contact-form textarea::placeholder {
+    color: var(--text-tertiary) !important;
 }
