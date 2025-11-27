@@ -8,7 +8,7 @@ all:
     landing-page:
       ansible_host: 34.231.236.197
       ansible_user: ec2-user
-      ansible_ssh_private_key_file: /Users/umurinan/.ssh/mindmate-ec2-fe
+      ansible_ssh_private_key_file: ~/.ssh/mindmate-ec2-fe
       ansible_python_interpreter: /usr/bin/python3
 
   vars:

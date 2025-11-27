@@ -15,6 +15,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3SE53Z2S2Z"></script>
     <script>
@@ -147,23 +153,38 @@
           <link
                   rel="stylesheet"
                   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+                  media="print"
+                  onload="this.media='all'"
           />
+          <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /></noscript>
 
-          <!-- Google Fonts: Poppins -->
+          <!-- Google Fonts: Poppins - Optimized -->
           <link
+                  rel="preload"
                   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-                  rel="stylesheet"
+                  as="style"
+                  onload="this.onload=null;this.rel='stylesheet'"
           />
+          <noscript>
+            <link
+                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+                    rel="stylesheet"
+            />
+          </noscript>
 
   </head>
 
 
     <!-- ===== All CSS files ===== -->
+      <link rel="preload" href="assets/css/bootstrap.min.css" as="style" />
       <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="assets/css/animate.css" />
-      <link rel="stylesheet" href="assets/css/lineicons.css" />
+      <link rel="preload" href="assets/css/ud-styles.css" as="style" />
       <link rel="stylesheet" href="assets/css/ud-styles.css" />
+      <link rel="preload" href="assets/css/override.css" as="style" />
       <link rel="stylesheet" href="assets/css/override.css" />
+      <link rel="stylesheet" href="assets/css/animate.css" media="print" onload="this.media='all'" />
+      <noscript><link rel="stylesheet" href="assets/css/animate.css" /></noscript>
+      <link rel="stylesheet" href="assets/css/lineicons.css" />
   <body>
     <!-- ====== Header Start ====== -->
     <header class="ud-header">
@@ -172,7 +193,7 @@
           <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg">
               <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo/logo.webp" alt="Logo" />
+                <img src="assets/images/logo/logo.webp" alt="Sohbet Terapi Logo" loading="eager" />
               </a>
               <button class="navbar-toggler">
                 <span class="toggler-icon"> </span>
@@ -245,15 +266,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
-              <h1 class="ud-hero-title">
+                <h1 class="ud-hero-title">
                   Sohbet Terapi: Konuş, Paylaş, Rahatla
               </h1>
-                <p class="ud-hero-desc">“Geceleri düşüncelerin durmuyor mu?”</p>
-                <p class="ud-hero-desc">“Birine anlatmak istiyorsun ama nereden başlayacağını bilemiyor musun?”</p>
-                <p class="ud-hero-desc">“Her şeyi içinden atmak istiyorsun ama kimse gerçekten anlamıyor mu?”</p>
                 <p class="ud-hero-desc">
-                    Her zaman yanında olan sessiz bir dost düşün... Yalnızca seni dinlemek ve yükünü hafifletmek için burada anonim ve güvenli bir ortamda, seni yargılamadan dinleyen empati odaklı yapay zekâ.
-                    7/24 yanında olan, seni anlayan ve orada olduğunu hatırlatan bir dost gibi her zaman seninle.
+                    Yapay zekâ destekli empatik sohbetler ile duygusal destek alın. Anonim, güvenli ve 7/24 erişilebilir bir platformda, sizi yargılamadan dinleyen, anlayan ve yanınızda olan bir destek sistemi.
                 </p>
 <!--                    They can Be add engagement sentences-->
 <!--                “Peki ya, seni yargılamadan dinleyecek bir yer olsaydı?”-->
@@ -263,13 +280,13 @@
                     <li>
 <!--                        <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" rel="noopener" class="store-badge">-->
                         <a href="#" class="store-badge" data-bs-toggle="modal" data-bs-target="#comingSoonModal">
-                        <img src="assets/images/badge/appstore-badge.svg" alt="App Store’dan İndirin" />
+                        <img src="assets/images/badge/appstore-badge.svg" alt="App Store'dan İndirin" width="120" height="40" loading="lazy" />
                         </a>
                     </li>
                     <li>
 <!--                        <a href="https://play.google.com/store/apps/details?id=YOUR_APP_ID" target="_blank" rel="noopener" class="store-badge">-->
                         <a href="#" class="store-badge" data-bs-toggle="modal" data-bs-target="#comingSoonModal">
-                        <img src="assets/images/badge/googleplay-badge.svg" alt="Google Play’den Edinin" />
+                        <img src="assets/images/badge/googleplay-badge.svg" alt="Google Play'den Edinin" width="120" height="40" loading="lazy" />
                         </a>
                     </li>
                 </ul>
@@ -312,8 +329,7 @@
                     <span>Özellikler</span>
                         <h2>Sohbet Terapi İle Öne Çıkanlar</h2>
                         <p>
-                            Sizlere ne sunuyoruz bizi farklı kılan ne ?
-                            İnsana değer veren, güvenli ve empati odaklı bir platform nedir ?
+                            Size özel tasarlanmış özelliklerle, güvenli ve empati odaklı bir deneyim sunuyoruz.
                         </p>
                     </div>
                 </div>
@@ -389,6 +405,10 @@
                         alt="App Screens"
                         id="preview-trigger"
                         class="img-fluid preview-main"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                 />
             </div>
         </div>
@@ -401,10 +421,10 @@
                 <div class="swiper popup-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img loading="lazy" src="assets/images/hero/screen1.png" alt="Screen 1" class="popup-img" />
+                            <img loading="lazy" src="assets/images/hero/screen1.png" alt="Screen 1" class="popup-img" width="400" height="800" decoding="async" />
                         </div>
                         <div class="swiper-slide">
-                            <img loading="lazy" src="assets/images/hero/screen2.png" alt="Screen 2" class="popup-img" />
+                            <img loading="lazy" src="assets/images/hero/screen2.png" alt="Screen 2" class="popup-img" width="400" height="800" decoding="async" />
                         </div>
                         <!-- İstersen daha fazla ekran ekle -->
                     </div>
@@ -423,7 +443,7 @@
         <div class="container">
             <h2 class="mb-4">Sohbet Terapi Sosyal Medyada</h2>
             <p class="gallery-desc mb-5">
-                Topluluğumuzun farklı platformlardaki paylaşımlarından ilham alın duygular, farkındalık, destek.
+                Topluluğumuzun farklı platformlardaki paylaşımlarından ilham alın. Duygular, farkındalık ve destek.
             </p>
 
             <div class="social-grid">
@@ -547,8 +567,7 @@
                         <span>Fiyatlandırma</span>
                         <h2>Paketlerimiz</h2>
                         <p>
-                            Kendini nasıl ifade etmek istersin?
-                            Her ihtiyaca uygun, güvenli ve özgür sohbet seçenekleri senin için burada.
+                            İhtiyacınıza uygun, esnek ve şeffaf fiyatlandırma seçenekleri ile size en uygun paketi seçin.
                         </p>
                     </div>
                 </div>
@@ -632,7 +651,7 @@
     <!-- ====== FAQ Start ====== -->
     <section id="faq" class="ud-faq">
         <div class="shape">
-            <img src="assets/images/faq/shape.svg" alt="shape" />
+            <img src="assets/images/faq/shape.svg" alt="shape" loading="lazy" aria-hidden="true" />
         </div>
         <div class="container">
             <div class="row">
@@ -792,9 +811,11 @@
                         <div class="ud-contact-title">
                             <span>İletişim</span>
                             <h2>
-                                Bizimle iletişime geçin <br />
-                                Görüşlerinizi duymaktan mutluluk duyarız!
+                                Bizimle İletişime Geçin
                             </h2>
+                            <p class="mt-3" style="font-size: 1.1rem; color: var(--text-secondary);">
+                                Sorularınız, önerileriniz veya geri bildirimleriniz için bizimle iletişime geçebilirsiniz.
+                            </p>
                         </div>
                         <div class="ud-contact-info-wrapper">
 
@@ -917,7 +938,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="ud-widget">
                             <a href="index.html" class="ud-footer-logo">
-                                <img src="assets/images/logo/logo.webp" alt="Sohbet Terapi" />
+                                <img src="assets/images/logo/logo.webp" alt="Sohbet Terapi" loading="lazy" />
                             </a>
                             <p class="ud-widget-desc">
                                 Yapay zekâ destekli sohbet ile kendini daha iyi hisset.
@@ -1020,51 +1041,61 @@
     <!-- ====== Back To Top End ====== -->
 
     <!-- ====== All Javascript Files ====== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js" defer></script>
+    <script src="assets/js/wow.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
     <script>
-      // ==== for menu scroll
-      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+      // ==== for menu scroll - optimized
+      document.addEventListener("DOMContentLoaded", function() {
+        const pageLink = document.querySelectorAll(".ud-menu-scroll");
 
-      pageLink.forEach((elem) => {
-        elem.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.querySelector(elem.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            offsetTop: 1 - 60,
+        pageLink.forEach((elem) => {
+          elem.addEventListener("click", (e) => {
+            e.preventDefault();
+            const target = document.querySelector(elem.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
           });
         });
-      });
 
-      // section menu active
-      function onScroll(event) {
-        const sections = document.querySelectorAll(".ud-menu-scroll");
-        const scrollPos =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+        // section menu active - throttled for performance
+        let ticking = false;
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const sections = document.querySelectorAll(".ud-menu-scroll");
+              const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
-        for (let i = 0; i < sections.length; i++) {
-          const currLink = sections[i];
-          const val = currLink.getAttribute("href");
-          const refElement = document.querySelector(val);
-          const scrollTopMinus = scrollPos + 73;
-          if (
-            refElement.offsetTop <= scrollTopMinus &&
-            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-          ) {
-              document.querySelectorAll(".ud-menu-scroll").forEach(link => link.classList.remove("active"));
-              currLink.classList.add("active");
-
-          } else {
-            currLink.classList.remove("active");
+              for (let i = 0; i < sections.length; i++) {
+                const currLink = sections[i];
+                const val = currLink.getAttribute("href");
+                const refElement = document.querySelector(val);
+                if (refElement) {
+                  const scrollTopMinus = scrollPos + 73;
+                  if (
+                    refElement.offsetTop <= scrollTopMinus &&
+                    refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+                  ) {
+                    document.querySelectorAll(".ud-menu-scroll").forEach(link => link.classList.remove("active"));
+                    currLink.classList.add("active");
+                  } else {
+                    currLink.classList.remove("active");
+                  }
+                }
+              }
+              ticking = false;
+            });
+            ticking = true;
           }
         }
-      }
 
-      window.document.addEventListener("scroll", onScroll);
+        window.addEventListener("scroll", onScroll, { passive: true });
+      });
     </script>
   </body>
 </html>

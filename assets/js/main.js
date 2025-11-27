@@ -120,7 +120,7 @@
           </div>
           <div class="ud-testimonial-info">
             <div class="ud-testimonial-image">
-              <img src="${t.image}" alt="${t.name}" />
+              <img src="${t.image}" alt="${t.name}" loading="lazy" width="60" height="60" />
             </div>
             <div class="ud-testimonial-meta">
               <h4>${t.name}</h4>
@@ -162,15 +162,7 @@
     loadTestimonials();
 })();
 
-// === Hero Section Animation Trigger ===
-window.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        const heroContent = document.querySelector(".ud-hero-content");
-        if (heroContent) {
-            heroContent.classList.add("show-all");
-        }
-    }, 6400); // 6.4 seconds after final scene come up
-});
+// Hero animation removed for better performance - using CSS-only animation instead
 
 // === App Preview Popup with Swiper ===
 document.addEventListener("DOMContentLoaded", () => {

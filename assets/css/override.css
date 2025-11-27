@@ -16,11 +16,12 @@
 /* ============================= */
 html, body {
     font-size: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     color: var(--text-secondary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Optional: for mobile responsiveness */
@@ -58,7 +59,6 @@ html, body {
 /*}*/
 .ud-app-preview,
 .ud-social-follow,
-.ud-hero,
 .ud-features,
 .ud-contact,
 .ud-testimonials,
@@ -71,29 +71,73 @@ html, body {
     );
 }
 
-/* Default logo (desktop) */
-.navbar-brand img {
-    max-height: 135px;  /* was 70px → +65% */
-    width: auto;
-    max-width: 100%;
+/* Hero Section - Professional Modern Design */
+.ud-hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #4a90c2 100%) !important;
+    padding: 180px 0 120px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.ud-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(130, 205, 224, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(106, 186, 197, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.ud-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .ud-hero {
+        padding: 130px 0 80px !important;
+    }
+}
+
+/* Default logo (desktop) - Square logo (704x704) - maintain 1:1 aspect ratio */
+.ud-header .navbar-brand img {
+    height: 50px !important;
+    width: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
 }
 
 /* Tablet */
 @media (max-width: 991px) {
-    .navbar-brand img {
-        max-height: 120px; /* was 55px → +65% */
+    .ud-header .navbar-brand img {
+        height: 45px !important;
+        width: 45px !important;
+        max-width: 45px !important;
+        max-height: 45px !important;
     }
 }
 
 /* Mobile */
 @media (max-width: 575px) {
-    .navbar-brand img {
-        max-height: 100px; /* was 45px → +65% */
+    .ud-header .navbar-brand img {
+        height: 40px !important;
+        width: 40px !important;
+        max-width: 40px !important;
+        max-height: 40px !important;
     }
 }
+
 /* Padding for breathing space */
-.navbar-brand {
-    padding: 10px 0;   /* top bottom space */
+.ud-header .navbar-brand {
+    padding: 10px 0 !important;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -205,15 +249,16 @@ h1, h2, h3, h4, h5, h6 {
 /* Store Badges adjustments      */
 /* ============================= */
 .store-badge img {
-    height: 40px;              /* smaller size */
+    height: 50px;              /* slightly larger for better visibility */
     border-radius: 12px;       /* soft rounded corners */
-    background: transparent;   /* no background box */
-    box-shadow: none;
+    background: rgba(255, 255, 255, 0.1);   /* subtle background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .store-badge img:hover {
-    transform: scale(1.03);    /* subtle hover effect */
-    transition: transform 0.2s ease;
+    transform: scale(1.05) translateY(-2px);    /* subtle hover effect */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Make the badges centered and spaced */
@@ -228,22 +273,26 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Heading & Description    */
 /* ============================= */
 .ud-hero-content .ud-hero-title {
-    color: var(--text-primary) !important;
+    color: #ffffff !important;
     font-weight: 700 !important;
     font-size: 3.5rem !important;
     line-height: 1.2 !important;
     letter-spacing: -0.02em !important;
     margin-bottom: 1.5rem !important;
+    text-align: center;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: var(--text-secondary) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
     font-size: 1.25rem !important;
     line-height: 1.7 !important;
     font-weight: 400 !important;
     opacity: 1 !important;
     max-width: 720px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 991px) {
@@ -569,7 +618,19 @@ h1, h2, h3, h4, h5, h6 {
         display: block;
         margin-left: auto;
         margin-right: auto;
+        width: 80px !important;
+        height: 80px !important;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
     }
+}
+
+/* Footer logo - maintain square aspect ratio */
+.ud-footer .ud-footer-logo img {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
 }
 
 /* ============================= */
@@ -614,16 +675,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Added decsription at below of Application download button*/
 /* ============================= */
 .ud-hero-powerwords {
-    background: linear-gradient(90deg, #E1FAF1, #D8F6FF, #FFF4E6);
-    border-radius: 12px;
-
     position: relative;
     width: 100vw;                 /* Full screen width */
     left: 50%;
     right: 50%;
     margin-left: -50vw;           /* Force edge-to-edge layout */
     margin-right: -50vw;
-    padding: 18px 0;
+    margin-top: 3rem;
+    padding: 20px 0;
 
     display: flex;
     justify-content: center;
@@ -632,13 +691,23 @@ h1, h2, h3, h4, h5, h6 {
     gap: 18px;
 
     text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ud-hero-powerwords .pw-item {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ud-hero-powerwords .pw-separator {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* ============================= */
@@ -858,94 +927,27 @@ body {
 /* === Hero Text Customization === */
 .ud-hero-desc {
     font-family: 'Poppins', sans-serif !important;
-    font-weight: 600;
-    color: #334155; /* Slate Blue Grey: sakin ve güven verici */
+    font-weight: 400;
     letter-spacing: 0.3px;
 }
 
-/* Son paragraf (açıklama) daha yumuşak ton */
-.ud-hero-desc:last-of-type {
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* === Refined Hook + Group Return Animation === */
-
+/* === Simplified Hero Animation === */
 .ud-hero-content .ud-hero-desc {
-    color: #334155;
     font-family: 'Poppins', sans-serif;
     text-align: center;
     letter-spacing: 0.3px;
     line-height: 1.8;
-    opacity: 0;
-    transform: translateY(25px);
-    filter: blur(2px);
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* İlk üç cümle sahneye tek tek çıkar */
-.ud-hero-content .ud-hero-desc:nth-of-type(1),
-.ud-hero-content .ud-hero-desc:nth-of-type(2),
-.ud-hero-content .ud-hero-desc:nth-of-type(3) {
-    animation: hookStep 2s ease-in-out forwards;
-}
-
-/* Gecikmeler (sıralama) */
-.ud-hero-content .ud-hero-desc:nth-of-type(1) { animation-delay: 0s; }
-.ud-hero-content .ud-hero-desc:nth-of-type(2) { animation-delay: 2s; }
-.ud-hero-content .ud-hero-desc:nth-of-type(3) { animation-delay: 4s; }
-
-/* Alt metin: başta tamamen gizli kalır */
-.ud-hero-content .ud-hero-desc:nth-of-type(4) {
-    opacity: 0;
-}
-
-/* === Grup dönüşü (3 soru + alt metin birlikte) === */
-.ud-hero-content.show-all .ud-hero-desc {
-    animation: groupReturn 1.6s ease-out forwards;
-    animation-delay: 0s;
-}
-
-/* --- Animasyon tanımları --- */
-
-@keyframes hookStep {
-    0% {
-        opacity: 0;
-        transform: translateY(25px) scale(1.02);
-        filter: blur(2px);
-    }
-    30% {
-        opacity: 1;
-        transform: translateY(0) scale(1.01);
-        filter: blur(0.3px);
-    }
-    65% {
-        opacity: 1;
-        transform: translateY(-3px) scale(1.0);
-        filter: blur(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-        filter: blur(1px);
-    }
-}
-
-/* Grup halinde geri dönme (tüm satırlar + alt metin) */
-@keyframes groupReturn {
-    0% {
+@keyframes fadeInUp {
+    from {
         opacity: 0;
         transform: translateY(20px);
-        filter: blur(2px);
     }
-    40% {
+    to {
         opacity: 1;
         transform: translateY(0);
-        filter: blur(0.3px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
     }
 }
 

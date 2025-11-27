@@ -6,10 +6,10 @@ Author: lineicons.com
 -------------------------------- */
 @font-face {
   font-family: 'LineIcons';
-  src: url('../fonts/LineIcons.eot');
-  src: url('../fonts/LineIcons.eot') format('embedded-opentype'), url('../fonts/LineIcons.woff2') format('woff2'), url('../fonts/LineIcons.woff') format('woff'), url('../fonts/LineIcons.ttf') format('truetype'), url('../fonts/LineIcons.svg') format('svg');
+  src: url('../fonts/LineIcons.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 /*------------------------
 	base class definition
